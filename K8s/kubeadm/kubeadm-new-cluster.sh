@@ -5,7 +5,7 @@ echo "IP of the Master:"
 read masterIP
 
 echo "IPs of the Nodes:"
-read -a nodeIP
+read -a nodeIP 
 nodeCount = ${#nodeIP[@]}
 
 echo "Master IP Address: $masterIP"
@@ -19,7 +19,7 @@ done
 
 
 # Connect to master and download launch script
-ssh $masterIP 'curl -O https://raw.githubusercontent.com/TommyKTheDJ/k8sdemo/master/K8s/kubeadm-master.sh'
+ssh $masterIP 'curl -O https://raw.githubusercontent.com/TommyKTheDJ/k8sdemo/master/K8s/kubeadm/kubeadm-master.sh'
 
 # Connect to master and change permissions on script
 ssh $masterIP 'ls'
