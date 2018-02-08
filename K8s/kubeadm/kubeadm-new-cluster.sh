@@ -21,7 +21,10 @@ done
 ssh $masterIP 'sudo curl -O https://raw.githubusercontent.com/TommyKTheDJ/k8sdemo/master/K8s/kubeadm-master.sh'
 
 # Connect to master and change permissions on script
-ssh $masterIP 'chmod 700 kubeadm-master.sh'
+ssh $masterIP 'ls'
+
+# Connect to master and change permissions on script
+ssh $masterIP 'sudo chmod 700 kubeadm-master.sh'
 
 # Connect to master and run launch script
 ssh $masterIP 'sudo ./kubeadm-master.sh'
