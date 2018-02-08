@@ -6,7 +6,7 @@ read masterIP
 
 echo "IPs of the Nodes:"
 read -a nodeIP
-$nodeCount = ${#nodeIP[@]}
+nodeCount = ${#nodeIP[@]}
 
 echo "Master IP Address: $masterIP"
 echo "Number of Nodes: $nodeCount"
