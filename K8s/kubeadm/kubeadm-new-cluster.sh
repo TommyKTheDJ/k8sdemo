@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script assumes public keys have been placed on the kubernetes machines
 
 echo "IP of the Master:"
 read masterIP
@@ -7,7 +8,7 @@ echo "IPs of the Nodes:"
 read -a nodeIP
 
 echo "Master IP Address: $masterIP"
-echo "Number of Nodes: ${nodeIP[@]}"
+echo "Number of Nodes: $#nodeIP[@]}"
 echo "Node IP Addresses: ${nodeIP[*]}"
 
 
