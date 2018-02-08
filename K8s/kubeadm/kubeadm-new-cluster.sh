@@ -18,9 +18,6 @@ done
 #echo "Node IP Addresses: ${nodeIP[*]}"
 
 
-# Connect to master and change permissions on script
-ssh $masterIP 'pwd'
-
 # Connect to master and download launch script
 ssh $masterIP 'curl -O https://raw.githubusercontent.com/TommyKTheDJ/k8sdemo/master/K8s/kubeadm-master.sh'
 
@@ -30,8 +27,11 @@ ssh $masterIP 'ls'
 # Connect to master and change permissions on script
 ssh $masterIP 'chmod 700 kubeadm-master.sh'
 
+# Connect to master and change permissions on script
+workingDir = ssh $masterIP 'pwd'
+
 # Connect to master and run launch script
-ssh $masterIP 'sudo ./kubeadm-master.sh'
+ssh $masterIP 'sudo $workingDir/kubeadm-master.sh'
 
 echo "Enter the kubeadm join command:"
 read joinCmd
