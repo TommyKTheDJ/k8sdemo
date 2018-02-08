@@ -25,7 +25,7 @@ ssh $masterIP 'curl -O https://raw.githubusercontent.com/TommyKTheDJ/k8sdemo/mas
 #ssh $masterIP 'ls'
 
 # Connect to master and change permissions on script
-ssh $masterIP 'chmod 700 kubeadm-master.sh'
+#ssh $masterIP 'chmod 700 kubeadm-master.sh'
 
 # Connect to master and change permissions on script
 workingDir="$(ssh $masterIP 'pwd')"
@@ -33,6 +33,10 @@ echo "Running $workingDir/kubeadm-master.sh on Master at $masterIP"
 
 # Connect to master and run launch script
 ssh $masterIP 'sudo $workingDir/kubeadm-master.sh && echo $workingDir'
+ssh $masterIP << EOF
+echo "$workingDir"/kubeadm-master.sh
+sudo "$workingDir"/kubeadm-master.sh
+EOF
 
 echo "Enter the kubeadm join command:"
 read joinCmd
