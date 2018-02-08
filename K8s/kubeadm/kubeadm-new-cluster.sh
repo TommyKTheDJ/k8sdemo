@@ -28,7 +28,7 @@ ssh $masterIP 'ls'
 ssh $masterIP 'chmod 700 kubeadm-master.sh'
 
 # Connect to master and change permissions on script
-workingDir = 'ssh $masterIP 'pwd''
+workingDir="$(ssh $masterIP 'pwd')"
 
 # Connect to master and run launch script
 ssh $masterIP 'sudo $workingDir/kubeadm-master.sh'
