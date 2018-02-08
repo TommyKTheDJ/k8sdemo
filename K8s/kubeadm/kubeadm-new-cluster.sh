@@ -6,9 +6,10 @@ read masterIP
 
 echo "IPs of the Nodes:"
 read -a nodeIP
+nodeCount = ${#nodeIP[@]}
 
 echo "Master IP Address: $masterIP"
-echo "Number of Nodes: $#nodeIP[@]}"
+echo "Number of Nodes: $nodeCount"
 echo "Node IP Addresses: ${nodeIP[*]}"
 
 
@@ -25,7 +26,6 @@ echo "Enter the kubeadm join command:"
 read joinCmd
 
 # Connect to each node and join the cluster
-nodeCount = ${nodeIP[@]}
 for (( i=0; i<${nodeCount}; i++ ));
 do
 	echo "Joining node with IP ${nodeIP[$i]} to the cluster"
