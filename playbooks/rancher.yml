@@ -1,0 +1,6 @@
+---
+- hosts: rancher-all
+  user: root
+  become: true
+  roles:
+    - rancher-all
