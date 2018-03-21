@@ -1,6 +1,6 @@
 ---
 - hosts: rancher-all
-  user: root
+  user: centos
   become: true
   roles:
     - docker
