@@ -1,0 +1,8 @@
+---
+- hosts: dockeree
+  vars:
+    docker_url: ''
+  user: centos
+  become: true
+  roles:
+    - dockeree
