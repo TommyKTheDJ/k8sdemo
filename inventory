@@ -13,3 +13,8 @@ node5
 [rancher-all:children]
 rancher
 rancher-nodes
+
+[dockeree]
+docker1
+docker2
+docker3

@@ -1,0 +1,61 @@
+---
+- name: remove the legacy packages
+  yum:
+    name: "{{item}}"
+    state: absent
+  with_items:
+    - docker
+    - docker-client
+    - docker-client-latest
+    - docker-common
+    - docker-latest
+    - docker-latest-logrotate
+    - docker-logrotate
+    - docker-selinux
+    - docker-engine-selinux
+    - docker-engine
+    - docker-ce
+
+- name: update all packages
+  yum:
+    name: '*'
+    state: latest
+
+- name: Store DockerEE repository URL in a yum variable
+  - lineinfile:
+    path: /etc/yum/vars/dockerurl
+    line: "{{docker_url}}/centos"
+    state: present
+    create: yes
+
+- name: install required dependencies
+  yum:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+
+- name: add repository
+  yum_repository:
+    name: docker-ee
+    description: Docker EE Beta YUM repo
+    baseurl: "{{docker_url}}/centos/docker-ee.repo"
+
+- name: install the beta version of DockerEE from the test repo
+  yum:
+    name: docker-ee
+    enablerepo: docker-ee-test-17.06
+    state: present
+
+- name: start the Docker service using systemctl
+  systemd:
+    name: docker
+    state: started
+    user: yes
+
+- name: run the Hello World container
+  docker_container:
+    name: hello-world
+    image: hello-world
